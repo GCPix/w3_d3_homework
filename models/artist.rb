@@ -52,8 +52,8 @@ class Artist
     values = [id]
 
     result = SqlRunner.run(sql, values)
-    #I know this doesn't work but can't get why, return Artist.new(result) I am only returning one row so why can't I convert it to an object? 'no implicit conversion of String to Integer' I know it is because of the ID.  Is it that it is trying to convert the variable name to an int because I haven't told it just to look at the returned values?
-    details = result.map{|result| Artist.new(result)}
+
+    details = result.map{|result| Artist.new(result)}# result is the returned object from the exec_prepared statement? if it contains multiple rows of data we would need an array to see and use them all, map creates a new array with the details that were return seperated one index per row, the actual detail in this case is a has "id" => 222, "name" => "Lifehouse".  We then take each position in the array and say make it an object which is where Artist.new(result) comes in.
 
   end
 
