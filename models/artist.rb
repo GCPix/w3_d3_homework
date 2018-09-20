@@ -9,9 +9,7 @@ class Artist
     @id = options["id"].to_i if options["id"]
     @name = options["name"]
   end
-  # def self.add(name)
-  #   Artist.new(@name => name)
-  # end
+
   def save()
 
     sql = "INSERT INTO artists(name) VALUES ($1) RETURNING id"
@@ -54,7 +52,9 @@ class Artist
     values = [id]
 
     result = SqlRunner.run(sql, values)
-    return result.map{|result_hash| Artist.new(result_hash)}
+    #I know this doesn't work but can't get why, return Artist.new(result) I am only returning one row so why can't I convert it to an object? 'no implicit conversion of String to Integer' I know it is because of the ID.  Is it that it is trying to convert the variable name to an int because I haven't told it just to look at the returned values?
+    details = result.map{|result| Artist.new(result)}
+
   end
 
   def find_albums_for_artist
