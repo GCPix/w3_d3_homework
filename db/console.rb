@@ -32,8 +32,9 @@ album3 = Album.new({
   "artist_id" => artist3.id
 })
 album3.save()
-# artist4.name = "I don't care"#if I could get it to work this would be updating the object and the update method would pass this to the databse.
-# artist4.update()
+artist4.name = 'Ben Folds 5'
+
+artist4.update()
 
 album1.genre = "punk"
 album1.update()
